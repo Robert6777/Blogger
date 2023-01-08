@@ -1,8 +1,12 @@
 package com.blog.myblog.services;
 
-import com.blog.myblog.dto.ArticleDetailsDTO;
-import com.blog.myblog.dto.ArticleListDTO;
+import com.blog.myblog.domain.Article;
+import com.blog.myblog.dto.article.ArticleCreateDTO;
+import com.blog.myblog.dto.article.ArticleDetailsDTO;
+import com.blog.myblog.dto.article.ArticleListDTO;
+import com.blog.myblog.mappers.ArticleMapper;
 import com.blog.myblog.repositories.ArticleRepository;
+import com.blog.myblog.security.AuthenticationContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +17,16 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class ArticleService {
-    
+
     private ArticleRepository articleRepository;
+    private AuthenticationContext authenticationContext;
+    private ArticleMapper articleMapper;
 
 
-    public Long createArticle() {
-        return null;
+    public Long createArticle(ArticleCreateDTO dto) {
+        Article article = articleMapper.createNewArticle(dto);
+        article.setAuthor(authenticationContext.getSignedInUser());
+        return articleRepository.save(article).getId();
     }
 
     public List<ArticleListDTO> getAllArticles() {

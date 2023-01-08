@@ -1,8 +1,9 @@
 package com.blog.myblog.controllers;
 
-import com.blog.myblog.dto.ArticleDetailsDTO;
-import com.blog.myblog.dto.ArticleIdDTO;
-import com.blog.myblog.dto.ArticleListDTO;
+import com.blog.myblog.dto.article.ArticleCreateDTO;
+import com.blog.myblog.dto.article.ArticleDetailsDTO;
+import com.blog.myblog.dto.article.ArticleIdDTO;
+import com.blog.myblog.dto.article.ArticleListDTO;
 import com.blog.myblog.services.ArticleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,8 @@ public class ArticleController {
     private ArticleService articleService;
 
     @PostMapping
-    public ResponseEntity<Long> createArticle() {
-        Long id = articleService.createArticle();
+    public ResponseEntity<Long> createArticle(ArticleCreateDTO dto) {
+        Long id = articleService.createArticle(dto);
         return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 
@@ -43,13 +44,9 @@ public class ArticleController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-
     @DeleteMapping
     public ResponseEntity<Void> deleteArticle(ArticleIdDTO dto) {
         articleService.deleteArticle(dto.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }
