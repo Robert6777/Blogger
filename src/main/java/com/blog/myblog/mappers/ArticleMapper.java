@@ -2,6 +2,9 @@ package com.blog.myblog.mappers;
 
 import com.blog.myblog.domain.Article;
 import com.blog.myblog.dto.article.ArticleCreateDTO;
+import com.blog.myblog.dto.article.ArticleDetailsDTO;
+import com.blog.myblog.dto.article.ArticleEditDTO;
+import com.blog.myblog.dto.article.ArticleListDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -20,6 +23,9 @@ public interface ArticleMapper {
 
     Article createNewArticle(ArticleCreateDTO dto);
 
+    List<ArticleListDTO> mapToArticleListDTOList(List<Article> articles);
 
+    ArticleDetailsDTO mapToArticleDetailsDTO(Article article);
 
+    void updateArticle (@MappingTarget Article article, ArticleEditDTO dto);
 }

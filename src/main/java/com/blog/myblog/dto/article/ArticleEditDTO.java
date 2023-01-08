@@ -5,9 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ArticleListDTO {
+public class ArticleEditDTO {
 
-    private Long id;
     private String title;
     private String body;
 }

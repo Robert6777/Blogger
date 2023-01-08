@@ -1,9 +1,6 @@
 package com.blog.myblog.controllers;
 
-import com.blog.myblog.dto.article.ArticleCreateDTO;
-import com.blog.myblog.dto.article.ArticleDetailsDTO;
-import com.blog.myblog.dto.article.ArticleIdDTO;
-import com.blog.myblog.dto.article.ArticleListDTO;
+import com.blog.myblog.dto.article.*;
 import com.blog.myblog.services.ArticleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +36,8 @@ public class ArticleController {
 
     @PutMapping
     @RequestMapping("/specific_article")
-    public ResponseEntity<Void> editArticle(ArticleIdDTO dto) {
-        articleService.editArticle(dto.getId());
+    public ResponseEntity<Void> editArticle(ArticleIdDTO idDTO, ArticleEditDTO editDTO) {
+        articleService.editArticle(idDTO.getId(),editDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
