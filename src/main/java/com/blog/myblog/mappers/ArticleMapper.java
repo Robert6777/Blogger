@@ -14,18 +14,21 @@ import java.util.List;
 @Mapper(config = SpringMapperConfig.class)
 public interface ArticleMapper {
 
-//    @Mapping(target = "id", ignore = true)
-//    @Mapping(target = "version", ignore = true)
-//    Product mapProductFromProductCreateDTO(ProductCreateDTO dto);
-//
-//    List<ProductListDTO> mapProductListToDTO (List<Product> products);
-
-
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "author", ignore = true)
+    @Mapping(target = "ratings", ignore = true)
+    @Mapping(target = "comments", ignore = true)
+    @Mapping(target = "version", ignore = true)
     Article createNewArticle(ArticleCreateDTO dto);
 
     List<ArticleListDTO> mapToArticleListDTOList(List<Article> articles);
 
     ArticleDetailsDTO mapToArticleDetailsDTO(Article article);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "author", ignore = true)
+    @Mapping(target = "ratings", ignore = true)
+    @Mapping(target = "comments", ignore = true)
+    @Mapping(target = "version", ignore = true)
     void updateArticle (@MappingTarget Article article, ArticleEditDTO dto);
 }

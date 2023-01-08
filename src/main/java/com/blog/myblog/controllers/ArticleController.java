@@ -16,7 +16,7 @@ public class ArticleController {
     private ArticleService articleService;
 
     @PostMapping
-    public ResponseEntity<Long> createArticle(ArticleCreateDTO dto) {
+    public ResponseEntity<Long> createArticle(@RequestBody ArticleCreateDTO dto) {
         Long id = articleService.createArticle(dto);
         return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
@@ -27,22 +27,20 @@ public class ArticleController {
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 
-    @GetMapping
-    @RequestMapping("/specific_article")
-    public ResponseEntity<ArticleDetailsDTO> getSpecificArticle(ArticleIdDTO dto) {
+    @GetMapping("/specific_article")
+    public ResponseEntity<ArticleDetailsDTO> getSpecificArticle(@RequestBody ArticleIdDTO dto) {
         ArticleDetailsDTO article = articleService.getSpecificArticle(dto.getId());
         return new ResponseEntity<>(article, HttpStatus.OK);
     }
 
-    @PutMapping
-    @RequestMapping("/specific_article")
-    public ResponseEntity<Void> editArticle(ArticleIdDTO idDTO, ArticleEditDTO editDTO) {
+    @PutMapping ("/specific_article")
+    public ResponseEntity<Void> editArticle(@RequestBody ArticleIdDTO idDTO, @RequestBody ArticleEditDTO editDTO) {
         articleService.editArticle(idDTO.getId(),editDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteArticle(ArticleIdDTO dto) {
+    public ResponseEntity<Void> deleteArticle(@RequestBody ArticleIdDTO dto) {
         articleService.deleteArticle(dto.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
