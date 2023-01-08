@@ -1,4 +1,9 @@
 package com.blog.myblog.repositories;
 
-public class ArticleRepository {
+import com.blog.myblog.domain.Article;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ArticleRepository extends JpaRepository<Long, Article> {
 }

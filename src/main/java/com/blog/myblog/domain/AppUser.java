@@ -9,7 +9,7 @@ import javax.validation.constraints.Email;
 import java.util.List;
 
 @Entity
-@Table(name = "app_user")
+@Table(name = "app_users")
 @Getter
 @Setter
 public class AppUser implements ConcurrencySafeEntity {
