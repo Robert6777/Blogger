@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: robi
+
+  - includeAll:
+      path: data
+      relativeToChangelogFile: true

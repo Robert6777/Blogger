@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: robi
+  - changeSet:
+      id: article-001
+      author: reka
+      changes:
+        - createTable:
+            tableName: articles
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: author
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_user_article
+                    references: app_users(id)
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: body
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: smallint
+                  constraints:
+                    nullable: false
+

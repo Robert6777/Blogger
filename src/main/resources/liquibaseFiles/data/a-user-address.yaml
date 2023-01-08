@@ -1,0 +1,171 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: robi
+
+  - changeSet:
+      id: 1
+      author: reka
+      changes:
+        - createTable:
+            tableName: app_users
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: smallint
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: reka
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: first_name
+                  value: Robert
+              - column:
+                  name: last_name
+                  value: Kovac
+              - column:
+                  name: email
+                  value: robert@kovac.sk
+              - column:
+                  name: role
+                  value: PORTAL_ADMINISTRATOR
+              - column:
+                  name: status
+                  value: ACTIVE
+              - column:
+                  name: version
+                  value: 0
+            schemaName: public
+            tableName: app_users
+
+  - changeSet:
+      id: 3
+      author: reka
+      changes:
+        - createTable:
+            tableName: addresses
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: street
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: street_number
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: zip_code
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: country
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: phone_number
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: smallint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_user_address
+                    references: app_users(id)
+
+  - changeSet:
+      id: 4
+      author: reka
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: street
+                  value: Baratsag utca
+              - column:
+                  name: street_number
+                  value: 77
+              - column:
+                  name: city
+                  value: Dunakeszi
+              - column:
+                  name: zip_code
+                  value: 2120
+              - column:
+                  name: country
+                  value: Hungary
+              - column:
+                  name: phone_number
+                  value: +36 77 2177 77
+              - column:
+                  name: version
+                  value: 0
+              - column:
+                  name: user_id
+                  value: 1
+            schemaName: public
+            tableName: addresses
