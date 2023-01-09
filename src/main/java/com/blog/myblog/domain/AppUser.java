@@ -9,7 +9,7 @@ import javax.validation.constraints.Email;
 import java.util.List;
 
 @Entity
-@Table(name = "app_user")
+@Table(name = "app_users")
 @Getter
 @Setter
 public class AppUser implements ConcurrencySafeEntity {
@@ -35,7 +35,7 @@ public class AppUser implements ConcurrencySafeEntity {
     @Column(name = "status", nullable = true)
     private String status;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany
     @JoinColumn(name = "user_id")
     private List<UserAddress> addressList;
 
