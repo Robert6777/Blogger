@@ -39,6 +39,7 @@ public class UserService {
 
     public void editUser(Long id, UserEditDTO editDTO) {
         AppUser appUser = getSpecificArticleById(id);
+        appUser.detectConcurrentModification(editDTO.getVersion());
         userMapper.updateUser(appUser,editDTO);
 
     }

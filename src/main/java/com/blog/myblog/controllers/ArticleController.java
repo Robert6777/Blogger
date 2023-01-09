@@ -29,21 +29,21 @@ public class ArticleController {
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 
-    @GetMapping("/specific_article")
-    public ResponseEntity<ArticleDetailsDTO> getSpecificArticle(@PathVariable Long id) {
-        ArticleDetailsDTO article = articleService.getSpecificArticle(id);
+    @GetMapping("/{articleId}")
+    public ResponseEntity<ArticleDetailsDTO> getSpecificArticle(@PathVariable Long articleId) {
+        ArticleDetailsDTO article = articleService.getSpecificArticle(articleId);
         return new ResponseEntity<>(article, HttpStatus.OK);
     }
 
-    @PutMapping ("/specific_article")
-    public ResponseEntity<Void> editArticle(@PathVariable Long id, @RequestBody ArticleEditDTO editDTO) {
-        articleService.editArticle(id,editDTO);
+    @PutMapping ("/{articleId}")
+    public ResponseEntity<Void> editArticle(@PathVariable Long articleId, @RequestBody ArticleEditDTO editDTO) {
+        articleService.editArticle(articleId,editDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
-        articleService.deleteArticle(id);
+    @DeleteMapping("/{articleId}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable Long articleId) {
+        articleService.deleteArticle(articleId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

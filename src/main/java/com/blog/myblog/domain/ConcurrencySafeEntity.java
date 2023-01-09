@@ -6,8 +6,8 @@ public interface ConcurrencySafeEntity {
 
     Short version();
 
-    default public void detectConcurrentModification(ConcurrencySafeEntity entity, Short transmittedVersion){
-       if(entity.version()!=transmittedVersion){
+    default void detectConcurrentModification(Short transmittedVersion){
+       if(!version().equals(transmittedVersion)){
            throw new ConcurrentModificationException("This entity was modified by another request in the meantime");
        }
     }

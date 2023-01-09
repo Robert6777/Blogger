@@ -9,5 +9,6 @@ public class UserEditDTO {
 
     private String firstName;
     private String lastName;
+    private Short version;
 
 }

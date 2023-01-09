@@ -38,13 +38,13 @@ public class UserController {
         return new ResponseEntity<>(appUser, HttpStatus.OK);
     }
 
-    @PutMapping ("/userId")
+    @PutMapping ("/{userId}")
     public ResponseEntity<Void> editUser(@PathVariable Long userId, @RequestBody UserEditDTO editDTO) {
         userService.editUser(userId,editDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/userId")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return new ResponseEntity<>(HttpStatus.OK);
