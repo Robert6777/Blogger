@@ -56,7 +56,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 1
+                  value: 0
               - column:
                   name: first_name
                   value: Robert
@@ -142,7 +142,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 1
+                  value: 0
               - column:
                   name: street
                   value: Baratsag utca
@@ -166,6 +166,6 @@ databaseChangeLog:
                   value: 0
               - column:
                   name: user_id
-                  value: 1
+                  value: 0
             schemaName: public
             tableName: addresses

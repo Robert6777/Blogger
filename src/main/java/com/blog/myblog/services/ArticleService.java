@@ -1,6 +1,5 @@
 package com.blog.myblog.services;
 
-import com.blog.myblog.domain.AppUser;
 import com.blog.myblog.domain.Article;
 import com.blog.myblog.dto.article.ArticleCreateDTO;
 import com.blog.myblog.dto.article.ArticleDetailsDTO;
@@ -21,9 +20,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ArticleService {
 
-    private ArticleRepository articleRepository;
-    private AuthenticationContext authenticationContext;
-    private ArticleMapper articleMapper;
+    private final ArticleRepository articleRepository;
+    private final AuthenticationContext authenticationContext;
+    private final ArticleMapper articleMapper;
 
 
     public Long createArticle(ArticleCreateDTO dto) {

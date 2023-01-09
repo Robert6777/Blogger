@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "address")
+@Table(name = "addresses")
 @Getter
 @Setter
 public class UserAddress implements ConcurrencySafeEntity {

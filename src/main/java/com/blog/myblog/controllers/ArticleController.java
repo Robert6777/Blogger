@@ -2,6 +2,7 @@ package com.blog.myblog.controllers;
 
 import com.blog.myblog.dto.article.*;
 import com.blog.myblog.services.ArticleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +12,10 @@ import java.util.List;
 @RestController
 @ResponseBody
 @RequestMapping("/api/v1/articles")
+@RequiredArgsConstructor
 public class ArticleController {
 
-    private ArticleService articleService;
+    private final ArticleService articleService;
 
     @PostMapping
     public ResponseEntity<Long> createArticle(@RequestBody ArticleCreateDTO dto) {
@@ -28,20 +30,20 @@ public class ArticleController {
     }
 
     @GetMapping("/specific_article")
-    public ResponseEntity<ArticleDetailsDTO> getSpecificArticle(@RequestBody ArticleIdDTO dto) {
-        ArticleDetailsDTO article = articleService.getSpecificArticle(dto.getId());
+    public ResponseEntity<ArticleDetailsDTO> getSpecificArticle(@PathVariable Long id) {
+        ArticleDetailsDTO article = articleService.getSpecificArticle(id);
         return new ResponseEntity<>(article, HttpStatus.OK);
     }
 
     @PutMapping ("/specific_article")
-    public ResponseEntity<Void> editArticle(@RequestBody ArticleIdDTO idDTO, @RequestBody ArticleEditDTO editDTO) {
-        articleService.editArticle(idDTO.getId(),editDTO);
+    public ResponseEntity<Void> editArticle(@PathVariable Long id, @RequestBody ArticleEditDTO editDTO) {
+        articleService.editArticle(id,editDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteArticle(@RequestBody ArticleIdDTO dto) {
-        articleService.deleteArticle(dto.getId());
+    public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
+        articleService.deleteArticle(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

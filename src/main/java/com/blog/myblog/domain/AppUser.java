@@ -35,7 +35,7 @@ public class AppUser implements ConcurrencySafeEntity {
     @Column(name = "status", nullable = true)
     private String status;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany
     @JoinColumn(name = "user_id")
     private List<UserAddress> addressList;
 
