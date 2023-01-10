@@ -1,6 +1,9 @@
 package com.blog.myblog.mappers;
 
+import com.blog.myblog.domain.AppUser;
 import com.blog.myblog.domain.Article;
+import com.blog.myblog.dto.appUser.AuthorDTO;
+import com.blog.myblog.dto.appUser.UserListDTO;
 import com.blog.myblog.dto.article.ArticleCreateDTO;
 import com.blog.myblog.dto.article.ArticleDetailsDTO;
 import com.blog.myblog.dto.article.ArticleEditDTO;
@@ -21,9 +24,18 @@ public interface ArticleMapper {
     @Mapping(target = "version", ignore = true)
     Article createNewArticle(ArticleCreateDTO dto);
 
+
+
     List<ArticleListDTO> mapToArticleListDTOList(List<Article> articles);
 
+    ArticleListDTO mapToArticleListDTO(Article article);
+
     ArticleDetailsDTO mapToArticleDetailsDTO(Article article);
+
+    @Mapping(target = "name", expression = "java(appUser.getLastName() + \",\" + appUser.getFirstName())")
+    AuthorDTO mapToAuthorDTO(AppUser appUser);
+
+
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "author", ignore = true)

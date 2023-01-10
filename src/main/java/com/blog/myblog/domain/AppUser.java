@@ -39,6 +39,9 @@ public class AppUser implements ConcurrencySafeEntity {
     @JoinColumn(name = "user_id")
     private List<UserAddress> addressList;
 
+    @OneToMany (mappedBy = "author")
+    private List<Article> articles;
+
     @Column(name = "version")
     @Version
     private Short version;

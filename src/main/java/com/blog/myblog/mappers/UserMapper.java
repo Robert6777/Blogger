@@ -19,12 +19,13 @@ public interface UserMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "addressList", ignore = true)
+    @Mapping(target = "articles", ignore = true)
     @Mapping(target = "version", ignore = true)
     AppUser createNewUser(UserCreateDTO dto);
 
     List<UserListDTO> mapToUserListDTOList(List<AppUser> articles);
 
-    @Mapping(target = "name", expression = "java(appUser.getLastName() + \" , \" + appUser.getFirstName())")
+    @Mapping(target = "name", expression = "java(appUser.getLastName() + \",\" + appUser.getFirstName())")
     UserListDTO mapToUserListDTO(AppUser appUser);
 
     UserDetailsDTO mapToUserDetailsDTO(AppUser user);
@@ -35,6 +36,7 @@ public interface UserMapper {
     @Mapping(target = "role", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "addressList", ignore = true)
+    @Mapping(target = "articles", ignore = true)
     @Mapping(target = "version", ignore = true)
     void updateUser (@MappingTarget AppUser appUser, UserEditDTO dto);
 

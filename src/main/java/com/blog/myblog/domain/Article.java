@@ -18,6 +18,7 @@ public class Article implements ConcurrencySafeEntity {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "author")
     private AppUser author;
 
     @OneToMany
