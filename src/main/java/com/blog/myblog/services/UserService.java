@@ -7,6 +7,7 @@ import com.blog.myblog.dto.appUser.UserEditDTO;
 import com.blog.myblog.dto.appUser.UserListDTO;
 import com.blog.myblog.mappers.UserMapper;
 import com.blog.myblog.repositories.UserRepository;
+import com.blog.myblog.security.AuthenticationContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final AuthenticationContext authenticationContext;
 
     public Long createUser(UserCreateDTO dto) {
         AppUser appUser = userMapper.createNewUser(dto);
@@ -37,11 +39,15 @@ public class UserService {
         return userMapper.mapToUserDetailsDTO(appUser);
     }
 
+    public UserDetailsDTO getMyProfile(){
+        AppUser myProfile = authenticationContext.getSignedInUser();
+        return userMapper.mapToUserDetailsDTO(myProfile);
+    }
+
     public void editUser(Long id, UserEditDTO editDTO) {
         AppUser appUser = getSpecificArticleById(id);
         appUser.detectConcurrentModification(editDTO.getVersion());
         userMapper.updateUser(appUser,editDTO);
-
     }
 
     public void deleteUser(Long id) {
