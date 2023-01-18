@@ -17,6 +17,11 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
+                  name: article_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
                   name: author
                   type: int
                   constraints:

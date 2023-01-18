@@ -1,5 +1,6 @@
 package com.blog.myblog.services;
 
+import com.blog.myblog.domain.AppUser;
 import com.blog.myblog.domain.Article;
 import com.blog.myblog.dto.article.ArticleCreateDTO;
 import com.blog.myblog.dto.article.ArticleDetailsDTO;
@@ -27,8 +28,27 @@ public class ArticleService {
 
     public Long createArticle(ArticleCreateDTO dto) {
         Article article = articleMapper.createNewArticle(dto);
-        article.setAuthor(authenticationContext.getSignedInUser());
+
+        var author = authenticationContext.getSignedInUser();
+        article.setAuthor(author);
+
+        var generatedArticleCode = generateArticleCode(author);
+        article.setArticleCode(generatedArticleCode);
+
         return articleRepository.save(article).getId();
+    }
+
+    //TODO CO AK SA DVAJA AUTORI VOLAJU ROVNAKO...VTEDY TREBA GENEROVAT NOVY KOD A POZICIE SUBSTRING NEBUDU SEDIET
+    private String generateArticleCode(AppUser author) {
+        var prefix = (author.getLastName().substring(0,2) + author.getFirstName().substring(0,2)).toUpperCase();
+        var maxArticleCode = articleRepository.getMaxArticleCode(author);
+        var format = "%04d";
+
+        // ak sa nam vrati sting reka-0001, tak od 5.indexu meni string na cislo + navysi pocitadlo o 1
+        // ak sa nam nic nevrati, tak automaticky pridava suffix 1
+        var numberCode = maxArticleCode.map(s -> Integer.parseInt(s.substring(5))+1).orElse(1);
+
+        return prefix + "-" + String.format(format,numberCode);
     }
 
     public List<ArticleListDTO> getAllArticles() {

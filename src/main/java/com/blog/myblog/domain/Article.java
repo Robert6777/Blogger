@@ -17,15 +17,13 @@ public class Article implements ConcurrencySafeEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "article_code", nullable = false)
+    private String articleCode;
+
     @ManyToOne
+    @JoinColumn(name = "author")
     private AppUser author;
-
-    @OneToMany
-    List<Rating> ratings;
-
-    @OneToMany
-    List<Comment> comments;
-
+    
     @Column(name = "title", nullable = false)
     private String title;
 
@@ -35,6 +33,9 @@ public class Article implements ConcurrencySafeEntity {
     @Column(name = "version")
     @Version
     private Short version;
+
+    @OneToMany (mappedBy = "article")
+    private List<Comment> comments;
 
     @Override
     public Short version() {

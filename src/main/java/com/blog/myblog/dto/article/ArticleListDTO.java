@@ -8,6 +8,7 @@ import lombok.Setter;
 public class ArticleListDTO {
 
     private Long id;
+    private String articleCode;
     private String title;
     private String body;
 }

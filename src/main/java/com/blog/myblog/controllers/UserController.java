@@ -38,6 +38,12 @@ public class UserController {
         return new ResponseEntity<>(appUser, HttpStatus.OK);
     }
 
+    @GetMapping("/my_profile")
+    public ResponseEntity<UserDetailsDTO> getMyUserProfile() {
+        UserDetailsDTO appUser = userService.getMyProfile();
+        return new ResponseEntity<>(appUser, HttpStatus.OK);
+    }
+
     @PutMapping ("/{userId}")
     public ResponseEntity<Void> editUser(@PathVariable Long userId, @RequestBody UserEditDTO editDTO) {
         userService.editUser(userId,editDTO);
