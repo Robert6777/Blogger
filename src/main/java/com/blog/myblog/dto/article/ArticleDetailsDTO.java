@@ -10,6 +10,7 @@ import lombok.Setter;
 public class ArticleDetailsDTO {
 
     private Long id;
+    private String articleCode;
     private String title;
     private String body;
     private AuthorDTO author;
