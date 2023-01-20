@@ -56,21 +56,21 @@ public class ArticleService {
     }
 
     public ArticleDetailsDTO getSpecificArticle(Long id) {
-        Article article = getSpecificArticleById(id);
+        Article article = getArticleEntityById(id);
         return articleMapper.mapToArticleDetailsDTO(article);
     }
 
     public void deleteArticle(Long id) {
-        Article article = getSpecificArticleById(id);
+        Article article = getArticleEntityById(id);
         articleRepository.delete(article);
     }
 
     public void editArticle(Long id, ArticleEditDTO dto) {
-        Article article = getSpecificArticleById(id);
+        Article article = getArticleEntityById(id);
         articleMapper.updateArticle(article,dto);
     }
 
-    private Article getSpecificArticleById(Long id){
+    public Article getArticleEntityById(Long id){
         return articleRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Article not found with id " + id));
     }

@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public UserDetailsDTO getSpecificUser(Long id) {
-        AppUser appUser = getSpecificArticleById(id);
+        AppUser appUser = getUserEntityById(id);
         return userMapper.mapToUserDetailsDTO(appUser);
     }
 
@@ -45,18 +45,18 @@ public class UserService {
     }
 
     public void editUser(Long id, UserEditDTO editDTO) {
-        AppUser appUser = getSpecificArticleById(id);
+        AppUser appUser = getUserEntityById(id);
         appUser.detectConcurrentModification(editDTO.getVersion());
         userMapper.updateUser(appUser,editDTO);
     }
 
     public void deleteUser(Long id) {
-        AppUser appUser = getSpecificArticleById(id);
+        AppUser appUser = getUserEntityById(id);
         userRepository.delete(appUser);
     }
 
-    private AppUser getSpecificArticleById(Long id) {
+    private AppUser getUserEntityById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Article not found with id " + id));
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
     }
 }
