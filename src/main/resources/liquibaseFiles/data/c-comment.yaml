@@ -43,5 +43,10 @@ databaseChangeLog:
                   constraints:
                     foreignKeyName: fk_article_comment
                     references: articles(id)
+              - column:
+                  name: version
+                  type: smallint
+                  constraints:
+                    nullable: false
 
 

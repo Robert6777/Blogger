@@ -9,4 +9,5 @@ public class ArticleEditDTO {
 
     private String title;
     private String body;
+    private Short version;
 }

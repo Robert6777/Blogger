@@ -67,6 +67,7 @@ public class ArticleService {
 
     public void editArticle(Long id, ArticleEditDTO dto) {
         Article article = getArticleEntityById(id);
+        article.detectConcurrentModification(dto.getVersion());
         articleMapper.updateArticle(article,dto);
     }
 

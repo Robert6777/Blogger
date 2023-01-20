@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name = "ratings")
+@Table(name = "comments")
 @Getter
 @Setter
 public class Comment implements ConcurrencySafeEntity {
