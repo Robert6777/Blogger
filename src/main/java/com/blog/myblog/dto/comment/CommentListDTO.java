@@ -11,7 +11,7 @@ public class CommentListDTO {
 
     private Long id;
     private String body;
-    private UserListDTO author;
+    private UserListDTO commenter;
     private ArticleListDTO article;
 
 }

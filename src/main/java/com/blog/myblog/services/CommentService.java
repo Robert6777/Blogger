@@ -28,8 +28,8 @@ public class CommentService {
     public Long createComment(CommentCreateDTO dto) {
         Comment comment = commentMapper.createComment(dto);
 
-        var author = authenticationContext.getSignedInUser();
-        comment.setAuthor(author);
+        var commenter = authenticationContext.getSignedInAdri();
+        comment.setCommenter(commenter);
 
         return commentRepository.save(comment).getId();
     }

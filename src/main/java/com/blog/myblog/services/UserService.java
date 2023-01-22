@@ -40,7 +40,7 @@ public class UserService {
     }
 
     public UserDetailsDTO getMyProfile(){
-        AppUser myProfile = authenticationContext.getSignedInUser();
+        AppUser myProfile = authenticationContext.getSignedInRobi();
         return userMapper.mapToUserDetailsDTO(myProfile);
     }
 

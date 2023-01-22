@@ -32,7 +32,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: author
+                  name: commenter
                   type: int
                   constraints:
                     foreignKeyName: fk_user_comment

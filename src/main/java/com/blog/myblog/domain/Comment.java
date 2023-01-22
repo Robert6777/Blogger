@@ -32,8 +32,8 @@ public class Comment implements ConcurrencySafeEntity {
     private String body;
 
     @ManyToOne
-    @JoinColumn(name = "author")
-    private AppUser author;
+    @JoinColumn(name = "commenter")
+    private AppUser commenter;
 
     @ManyToOne
     @JoinColumn(name = "article")

@@ -21,7 +21,7 @@ public interface CommentMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "author", ignore= true)
+    @Mapping(target = "commenter", ignore= true)
     @Mapping(target = "article", source = "articleId", qualifiedByName = "ExistingEntityResolver#findArticleById")
     @Mapping(target = "version", ignore= true)
     Comment createComment(CommentCreateDTO dto);
@@ -40,7 +40,7 @@ public interface CommentMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "author", ignore= true)
+    @Mapping(target = "commenter", ignore= true)
     @Mapping(target = "article", ignore= true)
     @Mapping(target = "version", ignore= true)
     void updateComment(@MappingTarget Comment comment, CommentEditDTO commentEditDTO);

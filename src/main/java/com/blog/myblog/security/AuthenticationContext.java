@@ -13,9 +13,16 @@ public class AuthenticationContext {
     private final UserRepository userRepository;
 
     // hardcoded data until security not implemented
-    public AppUser getSignedInUser(){
+    public AppUser getSignedInRobi(){
         return userRepository
                 .findById(0L)
+                .orElseThrow(()-> new EntityNotFoundException("Not found"));
+    }
+
+    // hardcoded data until security not implemented
+    public AppUser getSignedInAdri(){
+        return userRepository
+                .findById(1L)
                 .orElseThrow(()-> new EntityNotFoundException("Not found"));
     }
 

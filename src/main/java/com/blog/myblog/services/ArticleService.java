@@ -29,7 +29,7 @@ public class ArticleService {
     public Long createArticle(ArticleCreateDTO dto) {
         Article article = articleMapper.createNewArticle(dto);
 
-        var author = authenticationContext.getSignedInUser();
+        var author = authenticationContext.getSignedInRobi();
         article.setAuthor(author);
 
         var generatedArticleCode = generateArticleCode(author);

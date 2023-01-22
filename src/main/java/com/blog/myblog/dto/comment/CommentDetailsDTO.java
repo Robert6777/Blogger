@@ -15,7 +15,7 @@ public class CommentDetailsDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String body;
-    private UserListDTO author;
+    private UserListDTO commenter;
     private ArticleListDTO article;
     private Short version;
 }
