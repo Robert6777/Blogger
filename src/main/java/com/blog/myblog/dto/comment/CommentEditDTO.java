@@ -1,13 +1,12 @@
-package com.blog.myblog.dto.article;
+package com.blog.myblog.dto.comment;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ArticleEditDTO {
+public class CommentEditDTO {
 
-    private String title;
     private String body;
     private Short version;
 }

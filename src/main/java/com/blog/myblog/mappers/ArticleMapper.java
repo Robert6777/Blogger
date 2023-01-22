@@ -2,7 +2,6 @@ package com.blog.myblog.mappers;
 
 import com.blog.myblog.domain.AppUser;
 import com.blog.myblog.domain.Article;
-import com.blog.myblog.dto.appUser.AuthorDTO;
 import com.blog.myblog.dto.appUser.UserListDTO;
 import com.blog.myblog.dto.article.ArticleCreateDTO;
 import com.blog.myblog.dto.article.ArticleDetailsDTO;
@@ -22,6 +21,8 @@ public interface ArticleMapper {
     @Mapping(target = "author", ignore = true)
     @Mapping(target = "comments", ignore = true)
     @Mapping(target = "version", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     Article createNewArticle(ArticleCreateDTO dto);
 
 
@@ -33,7 +34,7 @@ public interface ArticleMapper {
     ArticleDetailsDTO mapToArticleDetailsDTO(Article article);
 
     @Mapping(target = "name", expression = "java(appUser.getLastName() + \",\" + appUser.getFirstName())")
-    AuthorDTO mapToAuthorDTO(AppUser appUser);
+    UserListDTO mapToAuthorDTO(AppUser appUser);
 
 
 
@@ -42,5 +43,7 @@ public interface ArticleMapper {
     @Mapping(target = "author", ignore = true)
     @Mapping(target = "comments", ignore = true)
     @Mapping(target = "version", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     void updateArticle (@MappingTarget Article article, ArticleEditDTO dto);
 }

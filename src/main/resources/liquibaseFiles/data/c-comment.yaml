@@ -3,11 +3,11 @@ databaseChangeLog:
       - runningAs:
           username: robi
   - changeSet:
-      id: article-001
+      id: comment-001
       author: reka
       changes:
         - createTable:
-            tableName: articles
+            tableName: comments
             columns:
               - column:
                   name: id
@@ -27,29 +27,26 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: article_code
-                  type: varchar(20)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: author
-                  type: int
-                  constraints:
-                    foreignKeyName: fk_user_article
-                    references: app_users(id)
-              - column:
-                  name: title
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-              - column:
                   name: body
                   type: text
                   constraints:
                     nullable: false
               - column:
+                  name: commenter
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_user_comment
+                    references: app_users(id)
+              - column:
+                  name: article
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_article_comment
+                    references: articles(id)
+              - column:
                   name: version
                   type: smallint
                   constraints:
                     nullable: false
+
 

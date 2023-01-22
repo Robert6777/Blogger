@@ -42,7 +42,7 @@ public class AppUser implements ConcurrencySafeEntity {
     @OneToMany (mappedBy = "author")
     private List<Article> articles;
 
-    @OneToMany (mappedBy = "author")
+    @OneToMany (mappedBy = "commenter")
     private List<Comment> comments;
 
     @Column(name = "version")

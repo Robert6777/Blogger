@@ -169,3 +169,69 @@ databaseChangeLog:
                   value: 0
             schemaName: public
             tableName: addresses
+
+  - changeSet:
+      id: 5
+      author: reka
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: first_name
+                  value: Adrienn
+              - column:
+                  name: last_name
+                  value: Kovac
+              - column:
+                  name: email
+                  value: adrienn@kovac.sk
+              - column:
+                  name: role
+                  value: PORTAL_ADMINISTRATOR
+              - column:
+                  name: status
+                  value: ACTIVE
+              - column:
+                  name: version
+                  value: 0
+            schemaName: public
+            tableName: app_users
+
+  - changeSet:
+      id: 6
+      author: reka
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: street
+                  value: Béke út
+              - column:
+                  name: street_number
+                  value: 1
+              - column:
+                  name: city
+                  value: Mihálygerge
+              - column:
+                  name: zip_code
+                  value: 3184
+              - column:
+                  name: country
+                  value: Hungary
+              - column:
+                  name: phone_number
+                  value: +36 20 446 6942
+              - column:
+                  name: version
+                  value: 0
+              - column:
+                  name: user_id
+                  value: 1
+            schemaName: public
+            tableName: addresses

@@ -2,34 +2,49 @@ package com.blog.myblog.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Entity
-@Table(name = "ratings")
+@Table(name = "comments")
 @Getter
 @Setter
-public class Comment {
+public class Comment implements ConcurrencySafeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    private AppUser author;
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
-    @ManyToOne
-    private Article article;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
-    private Date created_at;
-
-    private Date updated_at;
-
+    @Column(name = "body")
     private String body;
 
+    @ManyToOne
+    @JoinColumn(name = "commenter")
+    private AppUser commenter;
 
+    @ManyToOne
+    @JoinColumn(name = "article")
+    private Article article;
 
+    @Column(name = "version")
+    @Version
+    private Short version;
 
+    @Override
+    public Short version() {
+        return this.version;
+    }
 }
