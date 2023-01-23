@@ -49,6 +49,9 @@ public class Article implements ConcurrencySafeEntity {
     @OneToMany (mappedBy = "article")
     private List<Comment> comments;
 
+    @OneToMany (mappedBy = "article")
+    private List<Comment> alerts;
+
     @Override
     public Short version() {
         return this.version;

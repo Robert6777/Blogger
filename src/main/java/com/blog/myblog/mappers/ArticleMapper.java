@@ -23,6 +23,7 @@ public interface ArticleMapper {
     @Mapping(target = "version", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "alerts", ignore = true)
     Article createNewArticle(ArticleCreateDTO dto);
 
 
@@ -45,5 +46,6 @@ public interface ArticleMapper {
     @Mapping(target = "version", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "alerts", ignore = true)
     void updateArticle (@MappingTarget Article article, ArticleEditDTO dto);
 }

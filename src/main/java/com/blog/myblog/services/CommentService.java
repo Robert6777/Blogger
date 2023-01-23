@@ -1,6 +1,7 @@
 package com.blog.myblog.services;
 
 
+import com.blog.myblog.alerting.AlertPublisher;
 import com.blog.myblog.domain.Comment;
 import com.blog.myblog.dto.comment.CommentCreateDTO;
 import com.blog.myblog.dto.comment.CommentDetailsDTO;
@@ -24,12 +25,14 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final AuthenticationContext authenticationContext;
     private final CommentMapper commentMapper;
+    private final AlertPublisher publisher;
 
     public Long createComment(CommentCreateDTO dto) {
         Comment comment = commentMapper.createComment(dto);
 
         var commenter = authenticationContext.getSignedInAdri();
         comment.setCommenter(commenter);
+        publisher.publishArticleComment(comment.getArticle().getAuthor(), comment.getArticle());
 
         return commentRepository.save(comment).getId();
     }

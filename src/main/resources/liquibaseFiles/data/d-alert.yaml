@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: robi
+  - changeSet:
+      id: alert-001
+      author: reka
+      changes:
+        - createTable:
+            tableName: alerts
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: dateTime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: receiver_user
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_user_alert
+                    references: app_users(id)
+              - column:
+                  name: article
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_article_alert
+                    references: articles(id)
+              - column:
+                  name: testId
+                  type: int
+              - column:
+                  name: alert_type
+                  type: varchar(50)
+
+
+
+

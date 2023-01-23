@@ -1,6 +1,7 @@
 package com.blog.myblog.domain;
 
 
+import com.blog.myblog.domain.alerts.Alert;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,6 +45,9 @@ public class AppUser implements ConcurrencySafeEntity {
 
     @OneToMany (mappedBy = "commenter")
     private List<Comment> comments;
+
+    @OneToMany (mappedBy = "user")
+    private List<Alert> alerts;
 
     @Column(name = "version")
     @Version
