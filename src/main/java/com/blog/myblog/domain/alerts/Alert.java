@@ -30,4 +30,6 @@ public class Alert {
     @JoinColumn(name = "receiver_user")
     private AppUser user;
 
+    // this is change 1
+
 }
