@@ -3,11 +3,11 @@ databaseChangeLog:
       - runningAs:
           username: robi
   - changeSet:
-      id: alert-001
+      id: ratings-001
       author: reka
       changes:
         - createTable:
-            tableName: alerts
+            tableName: ratings
             columns:
               - column:
                   name: id
@@ -22,29 +22,25 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: receiver_user
+                  name: rating
                   type: int
                   constraints:
-                    foreignKeyName: fk_user_alert
-                    references: app_users(id)
-              - column:
-                  name: is_checked
-                  type: boolean
-                  constraints:
                     nullable: false
+              - column:
+                  name: body
+                  type: text
+              - column:
+                  name: reviewer
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_user_rating
+                    references: app_users(id)
               - column:
                   name: article
                   type: int
                   constraints:
-                    foreignKeyName: fk_article_alert
+                    foreignKeyName: fk_article_rating
                     references: articles(id)
-              - column:
-                  name: testId
-                  type: int
-              - column:
-                  name: alert_type
-                  type: varchar(50)
-
 
 
 

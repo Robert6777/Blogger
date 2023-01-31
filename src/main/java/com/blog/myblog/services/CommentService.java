@@ -32,7 +32,7 @@ public class CommentService {
 
         var commenter = authenticationContext.getSignedInAdri();
         comment.setCommenter(commenter);
-        publisher.publishArticleComment(comment.getArticle().getAuthor(), comment.getArticle());
+        publisher.publishArticleComment(comment);
 
         return commentRepository.save(comment).getId();
     }

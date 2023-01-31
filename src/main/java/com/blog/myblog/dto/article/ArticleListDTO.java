@@ -11,4 +11,5 @@ public class ArticleListDTO {
     private String articleCode;
     private String title;
     private String body;
+    private Double avgRating;
 }

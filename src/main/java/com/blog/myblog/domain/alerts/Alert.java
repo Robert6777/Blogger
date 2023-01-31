@@ -30,8 +30,6 @@ public class Alert {
     @JoinColumn(name = "receiver_user")
     private AppUser user;
 
-    // this is change 1
-
-    // this is change 2
-
+    @Column(name = "is_checked")
+    private Boolean isChecked = Boolean.FALSE;
 }

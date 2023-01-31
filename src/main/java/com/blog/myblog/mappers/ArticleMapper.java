@@ -24,12 +24,14 @@ public interface ArticleMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "alerts", ignore = true)
+    @Mapping(target = "ratings", ignore = true)
     Article createNewArticle(ArticleCreateDTO dto);
 
 
 
     List<ArticleListDTO> mapToArticleListDTOList(List<Article> articles);
 
+    @Mapping(target = "avgRating", expression = "java(article.getAvgRating())")
     ArticleListDTO mapToArticleListDTO(Article article);
 
     ArticleDetailsDTO mapToArticleDetailsDTO(Article article);
@@ -47,5 +49,6 @@ public interface ArticleMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "alerts", ignore = true)
+    @Mapping(target = "ratings", ignore = true)
     void updateArticle (@MappingTarget Article article, ArticleEditDTO dto);
 }
