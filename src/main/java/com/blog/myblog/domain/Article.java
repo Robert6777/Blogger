@@ -50,7 +50,7 @@ public class Article implements ConcurrencySafeEntity {
     @OneToMany (mappedBy = "article")
     private List<Comment> comments;
 
-    @OneToMany (mappedBy = "reviewer")
+    @OneToMany (mappedBy = "article")
     private List<Rating> ratings;
 
     @OneToMany (mappedBy = "article")
@@ -64,5 +64,4 @@ public class Article implements ConcurrencySafeEntity {
     public Double getAvgRating(){
         return ratings.stream().mapToInt(Rating::getRating).average().orElse(0.0);
     }
-
 }

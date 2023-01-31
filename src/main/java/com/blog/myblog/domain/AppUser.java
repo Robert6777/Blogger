@@ -46,7 +46,10 @@ public class AppUser implements ConcurrencySafeEntity {
     @OneToMany (mappedBy = "commenter")
     private List<Comment> comments;
 
-    @OneToMany (mappedBy = "user")
+    @OneToMany (mappedBy = "reviewer")
+    private List<Rating> ratings;
+
+    @OneToMany (mappedBy = "alertReceiver")
     private List<Alert> alerts;
 
     @Column(name = "version")
@@ -58,4 +61,7 @@ public class AppUser implements ConcurrencySafeEntity {
         return this.version;
     }
 
+    public boolean hasRatedThisArticle(Article article){
+        return ratings.stream().map(Rating::getArticle).toList().contains(article);
+    }
 }

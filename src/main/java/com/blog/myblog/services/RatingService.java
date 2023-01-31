@@ -1,9 +1,9 @@
 package com.blog.myblog.services;
 
-import com.blog.myblog.domain.Comment;
 import com.blog.myblog.domain.Rating;
 import com.blog.myblog.dto.rating.RatingCreateDTO;
 import com.blog.myblog.dto.rating.RatingListDTO;
+import com.blog.myblog.exceptions.ArticleRatedByUserException;
 import com.blog.myblog.mappers.RatingMapper;
 import com.blog.myblog.repositories.RatingRepository;
 import com.blog.myblog.security.AuthenticationContext;
@@ -25,8 +25,14 @@ public class RatingService {
 
     public Long createRating(RatingCreateDTO dto) {
         var rating = ratingMapper.createRating(dto);
-        rating.setReviewer(authenticationContext.getSignedInAdri());
+        var reviewer = authenticationContext.getSignedInAdri();
+        var article = rating.getArticle();
 
+        if (reviewer.hasRatedThisArticle(article)) {
+            throw new ArticleRatedByUserException("You can rate an article only once");
+        }
+
+        rating.setReviewer(reviewer);
         return ratingRepository.save(rating).getId();
     }
 

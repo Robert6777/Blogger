@@ -28,7 +28,7 @@ public class Alert {
 
     @ManyToOne
     @JoinColumn(name = "receiver_user")
-    private AppUser user;
+    private AppUser alertReceiver;
 
     @Column(name = "is_checked")
     private Boolean isChecked = Boolean.FALSE;

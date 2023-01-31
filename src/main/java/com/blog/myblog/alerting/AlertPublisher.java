@@ -15,7 +15,7 @@ public class AlertPublisher {
     public void publishArticleComment(Comment comment) {
         var alert = new ArticleCommentedAlert();
         alert.setArticle(comment.getArticle());
-        alert.setUser(comment.getArticle().getAuthor());
+        alert.setAlertReceiver(comment.getArticle().getAuthor());
         eventPublisher.publishEvent(alert);
     }
 }
