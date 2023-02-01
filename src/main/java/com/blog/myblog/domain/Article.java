@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -49,14 +50,18 @@ public class Article implements ConcurrencySafeEntity {
     @OneToMany (mappedBy = "article")
     private List<Comment> comments;
 
+    @OneToMany (mappedBy = "article")
+    private List<Rating> ratings;
+
+    @OneToMany (mappedBy = "article")
+    private List<Comment> alerts;
+
     @Override
     public Short version() {
         return this.version;
     }
 
-
-
-
-
-
+    public Double getAvgRating(){
+        return ratings.stream().mapToInt(Rating::getRating).average().orElse(0.0);
+    }
 }

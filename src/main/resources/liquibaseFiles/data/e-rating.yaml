@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: robi
+  - changeSet:
+      id: ratings-001
+      author: reka
+      changes:
+        - createTable:
+            tableName: ratings
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: dateTime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: body
+                  type: text
+              - column:
+                  name: reviewer
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_user_rating
+                    references: app_users(id)
+              - column:
+                  name: article
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_article_rating
+                    references: articles(id)
+
+
+

@@ -22,6 +22,8 @@ public interface UserMapper {
     @Mapping(target = "articles", ignore = true)
     @Mapping(target = "version", ignore = true)
     @Mapping(target = "comments", ignore = true)
+    @Mapping(target = "ratings", ignore = true)
+    @Mapping(target = "alerts", ignore = true)
     AppUser createNewUser(UserCreateDTO dto);
 
     List<UserListDTO> mapToUserListDTOList(List<AppUser> articles);
@@ -40,6 +42,8 @@ public interface UserMapper {
     @Mapping(target = "articles", ignore = true)
     @Mapping(target = "version", ignore = true)
     @Mapping(target = "comments", ignore = true)
+    @Mapping(target = "ratings", ignore = true)
+    @Mapping(target = "alerts", ignore = true)
     void updateUser (@MappingTarget AppUser appUser, UserEditDTO dto);
 
 

@@ -1,6 +1,7 @@
 package com.blog.myblog.domain;
 
 
+import com.blog.myblog.domain.alerts.Alert;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,6 +46,12 @@ public class AppUser implements ConcurrencySafeEntity {
     @OneToMany (mappedBy = "commenter")
     private List<Comment> comments;
 
+    @OneToMany (mappedBy = "reviewer")
+    private List<Rating> ratings;
+
+    @OneToMany (mappedBy = "alertReceiver")
+    private List<Alert> alerts;
+
     @Column(name = "version")
     @Version
     private Short version;
@@ -54,4 +61,7 @@ public class AppUser implements ConcurrencySafeEntity {
         return this.version;
     }
 
+    public boolean hasRatedThisArticle(Article article){
+        return ratings.stream().map(Rating::getArticle).toList().contains(article);
+    }
 }
