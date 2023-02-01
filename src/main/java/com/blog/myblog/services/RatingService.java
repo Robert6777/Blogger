@@ -1,5 +1,6 @@
 package com.blog.myblog.services;
 
+import com.blog.myblog.alerting.AlertPublisher;
 import com.blog.myblog.domain.Rating;
 import com.blog.myblog.dto.rating.RatingCreateDTO;
 import com.blog.myblog.dto.rating.RatingListDTO;
@@ -22,6 +23,7 @@ public class RatingService {
     private final RatingRepository ratingRepository;
     private final AuthenticationContext authenticationContext;
     private final RatingMapper ratingMapper;
+    private final AlertPublisher publisher;
 
     public Long createRating(RatingCreateDTO dto) {
         var rating = ratingMapper.createRating(dto);
@@ -33,7 +35,10 @@ public class RatingService {
         }
 
         rating.setReviewer(reviewer);
-        return ratingRepository.save(rating).getId();
+        var ratingId = ratingRepository.save(rating).getId();
+        publisher.publishArticleRated(rating);
+
+        return ratingId;
     }
 
     public List<RatingListDTO> getAllRatings(){
