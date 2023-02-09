@@ -8,5 +8,5 @@ import lombok.Setter;
 public class CommentEditDTO {
 
     private String body;
-    private Short version;
+    private int version;
 }

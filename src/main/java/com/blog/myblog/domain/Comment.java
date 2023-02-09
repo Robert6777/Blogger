@@ -41,10 +41,10 @@ public class Comment implements ConcurrencySafeEntity {
 
     @Column(name = "version")
     @Version
-    private Short version;
+    private int version;
 
     @Override
-    public Short version() {
+    public Integer version() {
         return this.version;
     }
 }

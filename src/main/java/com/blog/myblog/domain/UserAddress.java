@@ -34,11 +34,11 @@ public class UserAddress implements ConcurrencySafeEntity {
 
     @Column(name = "version", nullable = false)
     @Version
-    private Short version;
+    private int version;
 
 
     @Override
-    public Short version() {
+    public Integer version() {
         return null;
     }
 }
