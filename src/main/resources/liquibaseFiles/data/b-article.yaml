@@ -49,7 +49,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: version
-                  type: smallint
+                  type: int
                   constraints:
                     nullable: false
 

@@ -45,7 +45,7 @@ databaseChangeLog:
                     references: articles(id)
               - column:
                   name: version
-                  type: smallint
+                  type: int
                   constraints:
                     nullable: false
 
